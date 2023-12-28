@@ -21,7 +21,7 @@ jobs:
       run: sudo podman pull ghcr.io/led-esma/t2desktop:main 
       
     - name: Upload Artifact
-      run: sudo podman build -f /var/lib/containers -t t2-orchid .
+      run: sudo podman build -f /var/lib/containers/storage -t t2-orchid .
 
     - uses: actions/upload-artifact@v4
       with:
