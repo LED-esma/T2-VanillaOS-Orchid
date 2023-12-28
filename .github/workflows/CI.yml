@@ -17,11 +17,8 @@ jobs:
     - name: Install needed packages
       run: sudo apt install -y podman
 
-    - name: Pull image
-      run: sudo podman pull ghcr.io/led-esma/t2desktop:main 
-
-    - name: Testing
-      run: sudo podman images -a
+    - name: Pull/Upload Artifact
+      run: sudo podman build ghcr.io/led-esma/t2desktop:main --pull -t t2-orchid
 
     - uses: actions/upload-artifact@v4
       with:
