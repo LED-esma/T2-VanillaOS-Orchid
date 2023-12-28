@@ -1,0 +1,29 @@
+name: T2 VOS Build
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+    
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install needed packages
+      run: apt install -y podman
+
+    - name: Pull image
+      run: podman pull ghcr.io/led-esma/t2desktop:main
+
+    - name: Upload Artifact
+      run: podman build -f t2desktop -t t2-orchid
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: T2 VanillaOS 
+        path: builds/
