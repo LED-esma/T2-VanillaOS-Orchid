@@ -20,10 +20,8 @@ jobs:
     - name: Pull image
       run: sudo podman pull ghcr.io/led-esma/t2desktop:main
 
-    - name: Testing
-      run: |
-       sudo cd /var/lib/containers
-       sudo ls
+    - name: Upload Artifact
+      run: sudo podman build -f /var/lib/containers/t2desktop -t t2-orchid
 
     - uses: actions/upload-artifact@v4
       with:
